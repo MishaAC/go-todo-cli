@@ -33,7 +33,9 @@ func (m *Manager) AddTask(title string) error {
 }
 
 func (m *Manager) ListTasks() []task.Task {
-	return nil
+	tasksCopy := make([]task.Task, len(m.tasks))
+	copy(tasksCopy, m.tasks)
+	return tasksCopy
 }
 
 func (m *Manager) CompleteTask(id int) error {
