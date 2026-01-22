@@ -39,7 +39,19 @@ func (m *Manager) ListTasks() []task.Task {
 }
 
 func (m *Manager) CompleteTask(id int) error {
-	return nil
+	if m.IsEmpty() {
+		return errors.New("no tasks available")
+	}
+	for i, v := range m.tasks {
+		if v.ID == id {
+			if v.Completed {
+				return errors.New("task already completed")
+			}
+			m.tasks[i].Completed = true
+			return nil
+		}
+	}
+	return errors.New("task not found")
 }
 
 func (m *Manager) DeleteTask(id int) error {
