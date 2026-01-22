@@ -1,1 +1,5 @@
-package gotodocli
+package main
+
+func main() {
+	
+}
