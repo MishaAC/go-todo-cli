@@ -1,6 +1,10 @@
 package manager
 
-import "github.com/MishaAC/go-todo-cli/task"
+import (
+	"errors"
+
+	"github.com/MishaAC/go-todo-cli/task"
+)
 
 type Manager struct {
 	tasks  []task.Task
@@ -15,6 +19,16 @@ func New() *Manager {
 }
 
 func (m *Manager) AddTask(title string) error {
+	if title == "" {
+		return errors.New("task title cannot be empty")
+	}
+	task := task.Task{
+		ID:        m.nextID,
+		Title:     title,
+		Completed: false,
+	}
+	m.tasks = append(m.tasks, task)
+	m.nextID++
 	return nil
 }
 
