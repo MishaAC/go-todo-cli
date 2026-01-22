@@ -47,5 +47,5 @@ func (m *Manager) DeleteTask(id int) error {
 }
 
 func (m *Manager) IsEmpty() bool {
-	return false
+	return len(m.tasks) == 0
 }
